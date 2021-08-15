@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+use Jenssegers\Mongodb\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 class CreatePersonsTable extends Migration
@@ -19,13 +19,12 @@ class CreatePersonsTable extends Migration
             $table->string('email');
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();
-            $table->string('age')->nullable();
+            $table->integer('age')->nullable();
             $table->string('gender')->nullable();
             $table->string('mobile_number')->nullable();
             $table->string('city')->nullable();
             $table->string('car_model')->nullable();
-            $table->string('salary')->nullable();
-            $table->timestamps();
+            $table->integer('salary')->nullable();
         });
     }
 

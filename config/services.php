@@ -31,7 +31,8 @@ return [
     ],
 
     'csv' => [
-        'lines' =>env('CSV_LINES'),
+        'lines' =>env('CSV_LINES', 10),
+        'file_name' =>env('CSV_FILE_NAME', 'persons.csv'),
     ],
 
 ];
