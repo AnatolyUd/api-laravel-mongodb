@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\CsvService;
+use App\GenerateCsvService;
 use Illuminate\Console\Command;
 
 class GenerateCsv extends Command
@@ -36,7 +36,7 @@ class GenerateCsv extends Command
      *
      * @return int
      */
-    public function handle(CsvService $service)
+    public function handle(GenerateCsvService $service)
     {
         return $service->generateCsv();
     }
