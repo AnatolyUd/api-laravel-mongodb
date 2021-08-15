@@ -21,17 +21,22 @@ class PersonFactory extends Factory
      */
     public function definition()
     {
+        $firstName = $this->faker->firstName();
+        $lastName = $this->faker->lastName();
+
         return [
-            'login' => $this->faker->firstName(),
-            'email' => $this->faker->email(),
-            'first_name' => $this->faker->firstName(),
-            'last_name' => $this->faker->lastName(),
-            'age' => $this->faker->year(),
-            'gender' => $this->faker->randomElement(['male','female']),
-            'mobile_number' => $this->faker->phoneNumber(),
-            'city' => $this->faker->city(),
-            'car_model' => $this->faker->name(),
-            'salary' => $this->faker->buildingNumber(),
+            'properties' => [
+                ['login' => $firstName.'_'.$lastName],
+                ['email' => $this->faker->email()],
+                ['first_name' => $firstName],
+                ['last_name' => $lastName],
+                ['age' => $this->faker->year()],
+                ['gender' => $this->faker->randomElement(['male','female'])],
+                ['mobile_number' => $this->faker->phoneNumber()],
+                ['city' => $this->faker->city()],
+                ['car_model' => $this->faker->name()],
+                ['salary' => $this->faker->buildingNumber()],
+            ]
         ];
     }
 }

@@ -9,8 +9,8 @@ class Person extends Model
 {
     use HasFactory;
 
-    public $table = 'persons';
-
     public $timestamps = false;
+
+    protected $collection = 'persons';
 
 }
