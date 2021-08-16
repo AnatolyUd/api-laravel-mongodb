@@ -26,11 +26,11 @@ class GenerateCsvService
 
         $personFactory = Person::factory();
 
-        $header = $this->getHeader($personFactory->definition());
+        $header = $this->getHeader($personFactory->properties());
         $writer->insertOne($header);
 
         for ($line = 1; $line <= $lines; $line++) {
-            $values = $this->getValues($personFactory->definition());
+            $values = $this->getValues($personFactory->properties());
             $writer->insertOne($values);
         }
 
@@ -38,17 +38,17 @@ class GenerateCsvService
     }
 
     /**
-     * Get header from $definition
+     * Get header from $properties
      *
-     * @param $definition array
+     * @param $properties array
      *
      * @return array
      */
-    private function getHeader(array $definition)
+    private function getHeader(array $properties)
     {
         $values = [];
 
-        foreach ($definition['properties'] as $key => $value) {
+        foreach ($properties as $key => $value) {
             $pair = array_keys($value);
             $values[] = $pair[0];
         }
@@ -57,17 +57,17 @@ class GenerateCsvService
     }
 
     /**
-     * Get values from $definition
+     * Get values from $properties
      *
-     * @param $definition array
+     * @param $properties array
      *
      * @return array
      */
-    private function getValues(array $definition)
+    private function getValues(array $properties)
     {
         $values = [];
 
-        foreach ($definition['properties'] as $key => $value) {
+        foreach ($properties as $key => $value) {
             $pair = array_values($value);
             $values[] = $pair[0];
         }

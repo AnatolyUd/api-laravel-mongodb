@@ -21,12 +21,23 @@ class PersonFactory extends Factory
      */
     public function definition()
     {
-        $firstName = $this->faker->firstName();
-        $lastName = $this->faker->lastName();
+        return [
+            'properties' => $this->properties()
+        ];
+    }
+
+    /**
+     * Define the model's properties.
+     *
+     * @return array
+     */
+    public function properties()
+    {
+        $firstName = substr($this->faker->firstName(), 0, 1);
+        $lastName = substr($this->faker->lastName(), 0, 1);
 
         return [
-            'properties' => [
-                ['login' => $firstName.'_'.$lastName],
+                ['login' => $firstName.$lastName],
                 ['email' => $this->faker->email()],
                 ['first_name' => $firstName],
                 ['last_name' => $lastName],
@@ -36,7 +47,7 @@ class PersonFactory extends Factory
                 ['city' => $this->faker->city()],
                 ['car_model' => $this->faker->name()],
                 ['salary' => $this->faker->buildingNumber()],
-            ]
-        ];
+            ];
     }
+
 }

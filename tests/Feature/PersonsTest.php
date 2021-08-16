@@ -18,7 +18,7 @@ class PersonsTest extends TestCase
         $response = $this->post('/api/v1/persons');
 
         $response
-            ->assertStatus(201)
+            ->assertStatus(200)
             ->assertJsonStructure(['count']);
     }
 
