@@ -29,23 +29,24 @@ GET /api/v1/persons[?query_string]
 
 Response status code: 200
 
-##### Имена полей для фильтрации и сортировки (field_name)
+#### Имена полей для фильтрации и сортировки (field_name)
 
 login, email, first_name, last_name, age, gender, mobile_number, city, car_model, salary
 
-##### Сортировка
+#### Сортировка
 
 sort_by=field_name
+
 sort_order=['asc' | 'desc']
 
 
-##### Пагинация
+#### Пагинация
 
 offset=number
 
 limit=number
 
-##### Пример
+#### Пример
 
 http://api.local/api/v1/persons?age=1998&sort_by=salary&sort_order=asc&limit=1&offset=1
 
