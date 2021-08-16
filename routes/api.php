@@ -19,4 +19,6 @@ Route::prefix('v1')->group(function () {
 
     Route::post('/persons', [PersonsController::class, 'load']);
 
+    Route::get('/persons', [PersonsController::class, 'list']);
+
 });
