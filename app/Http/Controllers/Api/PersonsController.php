@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 
 class PersonsController extends Controller
 {
+    const PROPERTIES_KEY = 'properties';
 
     /*
       |-------------------------------------------------------------------------------
@@ -40,39 +41,39 @@ class PersonsController extends Controller
         $query = Person::query();
 
         if ($login = $request->input('login')){
-            $query->where('properties.login', $login);
+            $query->where(self::PROPERTIES_KEY.'.login', $login);
         }
         if ($email = $request->input('email')){
-            $query->where('properties.email', $email);
+            $query->where(self::PROPERTIES_KEY.'.email', $email);
         }
         if ($first_name = $request->input('first_name')){
-            $query->where('properties.first_name', $first_name);
+            $query->where(self::PROPERTIES_KEY.'.first_name', $first_name);
         }
         if ($last_name = $request->input('last_name')){
-            $query->where('properties.last_name', $last_name);
+            $query->where(self::PROPERTIES_KEY.'.last_name', $last_name);
         }
         if ($age = $request->input('age')){
-            $query->where('properties.age', $age);
+            $query->where(self::PROPERTIES_KEY.'.age', $age);
         }
         if ($gender = $request->input('gender')){
-            $query->where('properties.gender', $gender);
+            $query->where(self::PROPERTIES_KEY.'.gender', $gender);
         }
         if ($mobile_number = $request->input('mobile_number')){
-            $query->where('properties.mobile_number', $mobile_number);
+            $query->where(self::PROPERTIES_KEY.'.mobile_number', $mobile_number);
         }
         if ($city = $request->input('city')){
-            $query->where('properties.city', $city);
+            $query->where(self::PROPERTIES_KEY.'.city', $city);
         }
         if ($car_model = $request->input('car_model')){
-            $query->where('properties.car_model', $car_model);
+            $query->where(self::PROPERTIES_KEY.'.car_model', $car_model);
         }
         if ($salary = $request->input('salary')){
-            $query->where('properties.salary', $salary);
+            $query->where(self::PROPERTIES_KEY.'.salary', $salary);
         }
 
         $sort_order = $request->input('sort_order', 'asc');
         if ($sort_by = $request->input('sort_by')){
-            $query->orderBy('properties.'.$sort_by, $sort_order);
+            $query->orderBy(self::PROPERTIES_KEY.'.'.$sort_by, $sort_order);
         }
 
         if ($offset = $request->input('offset')){
