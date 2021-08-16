@@ -19,6 +19,37 @@ POST /api/v1/persons
   'count': number
 }
 ```
-Response status code: 201
+Response status code: 200
 
 number - число загруженных документов
+
+### Фильтрация, сортировка, пагинация
+
+GET /api/v1/persons[?query_string]
+
+Response status code: 200
+
+##### Имена полей для фильтрации и сортировки (field_name)
+
+login, email, first_name, last_name, age, gender, mobile_number, city, car_model, salary
+
+##### Сортировка
+
+sort_by=field_name
+sort_order=['asc' | 'desc']
+
+
+##### Пагинация
+
+offset=number
+
+limit=number
+
+##### Пример
+
+http://api.local/api/v1/persons?age=1998&sort_by=salary&sort_order=asc&limit=1&offset=1
+
+```javascript
+[{"_id":"6119ab5951b69208d47e3f96","properties":[{"login":"Junius_Barrows"},{"email":"kprosacco@herzog.biz"},{"first_name":"Junius"},{"last_name":"Barrows"},{"age":"1998"},{"gender":"male"},{"mobile_number":"+1-458-320-3129"},{"city":"Ettieshire"},{"car_model":"Vesta Ratke IV"},{"salary":"5307"}]}]
+```
+
