@@ -9,8 +9,6 @@ use Illuminate\Http\Request;
 
 class PersonsController extends Controller
 {
-    const PROPERTIES_KEY = 'properties';
-
     /*
       |-------------------------------------------------------------------------------
       | Load csv file to database
@@ -38,42 +36,23 @@ class PersonsController extends Controller
     */
     public function list(Request $request)
     {
-        $query = Person::query();
+        $properties = array_intersect_key($request->input(), array_fill_keys(Person::PROPERTY_NAMES, 0));
 
-        if ($login = $request->input('login')){
-            $query->where(self::PROPERTIES_KEY.'.login', $login);
+        $whereProperties = [];
+        foreach ($properties as $key => $value) {
+            if (in_array($key, Person::PROPERTY_HAS_INT_VALUES)) {
+                $value = intval($value);
+            }
+
+            $whereProperties[Person::PROPERTIES_KEY.'.'.$key] = $value;
         }
-        if ($email = $request->input('email')){
-            $query->where(self::PROPERTIES_KEY.'.email', $email);
-        }
-        if ($first_name = $request->input('first_name')){
-            $query->where(self::PROPERTIES_KEY.'.first_name', $first_name);
-        }
-        if ($last_name = $request->input('last_name')){
-            $query->where(self::PROPERTIES_KEY.'.last_name', $last_name);
-        }
-        if ($age = $request->input('age')){
-            $query->where(self::PROPERTIES_KEY.'.age', $age);
-        }
-        if ($gender = $request->input('gender')){
-            $query->where(self::PROPERTIES_KEY.'.gender', $gender);
-        }
-        if ($mobile_number = $request->input('mobile_number')){
-            $query->where(self::PROPERTIES_KEY.'.mobile_number', $mobile_number);
-        }
-        if ($city = $request->input('city')){
-            $query->where(self::PROPERTIES_KEY.'.city', $city);
-        }
-        if ($car_model = $request->input('car_model')){
-            $query->where(self::PROPERTIES_KEY.'.car_model', $car_model);
-        }
-        if ($salary = $request->input('salary')){
-            $query->where(self::PROPERTIES_KEY.'.salary', $salary);
-        }
+
+        $query = Person::query();
+        $query->where($whereProperties);
 
         $sort_order = $request->input('sort_order', 'asc');
         if ($sort_by = $request->input('sort_by')){
-            $query->orderBy(self::PROPERTIES_KEY.'.'.$sort_by, $sort_order);
+            $query->orderBy(Person::PROPERTIES_KEY.'.'.$sort_by, $sort_order);
         }
 
         if ($offset = $request->input('offset')){

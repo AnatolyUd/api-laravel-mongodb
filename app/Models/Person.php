@@ -24,6 +24,11 @@ class Person extends Model
         'salary'
     ];
 
+    public const PROPERTY_HAS_INT_VALUES = [
+        'age',
+        'salary'
+    ];
+
     public $timestamps = false;
 
     public $fillable = self::PROPERTY_NAMES;
