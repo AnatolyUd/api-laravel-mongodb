@@ -22,7 +22,7 @@ class PersonFactory extends Factory
     public function definition()
     {
         return [
-            'properties' => $this->properties()
+            Person::PROPERTIES_KEY => $this->properties()
         ];
     }
 
@@ -37,17 +37,17 @@ class PersonFactory extends Factory
         $lastName = substr($this->faker->lastName(), 0, 1);
 
         return [
-                ['login' => $firstName.$lastName],
-                ['email' => $this->faker->email()],
-                ['first_name' => $firstName],
-                ['last_name' => $lastName],
-                ['age' => $this->faker->year()],
-                ['gender' => $this->faker->randomElement(['male','female'])],
-                ['mobile_number' => $this->faker->phoneNumber()],
-                ['city' => $this->faker->city()],
-                ['car_model' => $this->faker->name()],
-                ['salary' => $this->faker->buildingNumber()],
-            ];
+            'login' => $firstName.$lastName,
+            'email' => $this->faker->email(),
+            'first_name' => $firstName,
+            'last_name' => $lastName,
+            'age' => $this->faker->year(),
+            'gender' => $this->faker->randomElement(['male','female']),
+            'mobile_number' => $this->faker->phoneNumber(),
+            'city' => $this->faker->city(),
+            'car_model' => $this->faker->name(),
+            'salary' => $this->faker->buildingNumber(),
+        ];
     }
 
 }
