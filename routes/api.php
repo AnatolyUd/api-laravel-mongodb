@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\PersonsController;
+use App\Http\Controllers\Api\RegsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,9 +17,11 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::prefix('v1')->group(function () {
-
     Route::post('/persons', [PersonsController::class, 'load']);
-
     Route::get('/persons', [PersonsController::class, 'list']);
+});
 
+Route::prefix('v1')->group(function () {
+    Route::get('/regs', [RegsController::class, 'load']);
+    //Route::get('/regs', [RegsController::class, 'list']);
 });

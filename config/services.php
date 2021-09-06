@@ -33,6 +33,7 @@ return [
     'csv' => [
         'lines' =>env('CSV_LINES'),
         'file_name' =>env('CSV_FILE_NAME'),
+        'file_name_regs' =>env('CSV_FILE_NAME_REGS'),
     ],
 
 ];
